@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="left">
+            <div class="list" draggable="true">list</div>
+            <div class="list" draggable="true">list1</div>
+            <div class="list" draggable="true">list2</div>
+            <div class="list" draggable="true">list3</div>
+        </div>
+        <div id="right">
+
+        </div>
+    </div>
+    <script>
+        const lists = document.getElementsByClassName("list");
+        const rightBox = document.getElementById("right");
+        const leftBox = document.getElementById("left");
+        for (const list of lists) {
+
+        list.addEventListener("dragstart", (e) => {
+            let selected = e.target
+            rightBox.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            })
+            rightBox.addEventListener("drop", (e) => {
+                e.preventDefault();
+                rightBox.appendChild(selected);
+                selected = "null"
+            })
+            leftBox.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            })
+            leftBox.addEventListener("drop", (e) => {
+                e.preventDefault();
+                leftBox.appendChild(selected);
+                selected = "null"
+            })
+
+        });
+        }
+    </script>
+</body>
+
+</html>
